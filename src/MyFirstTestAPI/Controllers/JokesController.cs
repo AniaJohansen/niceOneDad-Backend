@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Net.Http;
-using System.Threading.Tasks;
-
-namespace MyFirstTestAPI.Controllers
+﻿namespace MyFirstTestAPI.Controllers
 {
+    using System.Net.Http;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Mvc;
+
     [Route("jokes")]
     [ApiController]
     public class JokesController : ControllerBase
@@ -15,19 +15,19 @@ namespace MyFirstTestAPI.Controllers
             var client = new HttpClient();
             client.DefaultRequestHeaders.Add("Accept","text/plain");
             HttpResponseMessage response = await client.GetAsync("https://icanhazdadjoke.com/");
-           
+
             return await response.Content.ReadAsStringAsync();
         }
 
         //// GET jokes/5
-        //[HttpGet("{id}")]
-        //public async Task <ActionResult<string>> Get(string id)
-        //{
+        // [HttpGet("{id}")]
+        // public async Task <ActionResult<string>> Get(string id)
+        // {
         //    var client = new HttpClient();
         //    //client.DefaultRequestHeaders
         //    HttpResponseMessage response = await client.GetAsync($"https://icanhazdadjoke.com/j/{id}");
         //    return await response.Content.ReadAsStringAsync();
-        //}
+        // }
 
         // GET jokes/search
         // Let's you specify a searchterm in the URL
@@ -39,9 +39,6 @@ namespace MyFirstTestAPI.Controllers
             HttpResponseMessage response = await client.GetAsync($"https://icanhazdadjoke.com/search?term={searchTerm}");
 
             return await response.Content.ReadAsStringAsync();
-        
         }
-
-
     }
 }
